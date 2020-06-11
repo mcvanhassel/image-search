@@ -1,0 +1,16 @@
+<nav>
+  <mat-toolbar [color]="'primary'">
+    <span>Gif Me Inspiration</span>
+    <div class="menu-items">
+      <a
+        mat-button
+        *ngFor="let menuItem of menuItems"
+        [routerLink]="menuItem.routerLink"
+        [routerLinkActive]="'mat-accent'"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>{{ menuItem.icon }}</mat-icon> {{ menuItem.title }}
+      </a>
+    </div>
+  </mat-toolbar>
+</nav>
