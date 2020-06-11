@@ -18,11 +18,8 @@ script:
   - ng test --watch=false --browsers ChromeHeadless
   - ng build --prod
 
-deploy:
-  provider: firebase
-  cleanup: false
-  token:
-    secure: bSXLKx59hZEkQcVa1Xdks1LDrWoQ4bjuy75Dl5jUjYBrDJ7GDRTygyRuoyVL8BQ5nxb55XyPGRx76g5b3Z0NTlO0yeXlTBtIqxCeqtBfb3bHrEp+JPHkmlRsC2GWpxbErywtbCDtT74AO7P5bz7+8di+Rb0c/lGkyoxPcgxd7H9vFCULUEzXAB7a21OEx+aM1qEGIPcMYyCdOTMiJ71DbIiLfe/xOxe7Ht3g+HZTR0b7xH4+sgfT70VsfUCOvuDE0QRqzw0Y7DO9CYwsFqBom0WKHg1bgjk6X+tu8L/iTYdWhPz0joQfSgkxg6ojIWy2X+fcR7RkfaGe8HhO1EHDZcIymPjQ3WEri9yyMsAVoJYaMA/0hU5zkWjooGV5vGj5r/EG69tzfH/SwR6nRcd0hmtZ6yrAIT9Phkj9KlZWHYYOQUtEIvsQcsX/Uz1K39vB5qZ2FRmX374EBUz/38Q1njJ5DUeLp4MeXhUObCbt8rsgaNUmeDc+obMdviMnPOzwySOjesI19Xg+QUP01CDC9TcdfVNN9VCRgF1TPEt+21CG/XoR1Ae5EjhLuWsF/Kza2zdwbT6tAMkb5JtjNcfrAVVljAvYOtVhrNWHyXynOF86oHo749Dmi1h3KqH2pOAv/lcdf/QXwb9ojCWh9DBJf/P+RZZrsyX3YTSfaPoC//4=
+after_success:
+  - firebase deploy --token=${FIREBASE_TOKEN}
 
 notifications:
   email:
