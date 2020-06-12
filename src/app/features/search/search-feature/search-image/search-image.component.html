@@ -17,10 +17,7 @@
 
 <ng-container *ngIf="!(errorMessage$ | async)">
   <ng-container *ngIf="imageSearchResponse$ | async as imageSearchResponse; else startSearch">
-    <app-image-grid
-      *ngIf="imageSearchResponse?.images.length > 0; else emptyResult"
-      [images]="imageSearchResponse?.images"
-    ></app-image-grid>
+    <app-image-grid *ngIf="imageSearchResponse?.images?.length; else emptyResult" [images]="imageSearchResponse?.images"></app-image-grid>
   </ng-container>
 </ng-container>
 
