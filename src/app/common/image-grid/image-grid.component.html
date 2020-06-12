@@ -1,0 +1,9 @@
+<div class="images">
+  <picture *ngFor="let image of images">
+    <source type="image/webp" media="(min-width: 960px)" [srcset]="image.images.medium.webp" />
+    <source type="image/webp" [srcset]="image.images.small.webp" />
+    <source type="video/mp4" media="(min-width: 960px)" [srcset]="image.images.medium.mp4" />
+    <source type="video/mp4" [srcset]="image.images.small.mp4" />
+    <img [src]="image.images.medium.url" [alt]="image.title" />
+  </picture>
+</div>
