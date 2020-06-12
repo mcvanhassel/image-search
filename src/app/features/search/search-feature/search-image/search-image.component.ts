@@ -5,6 +5,7 @@ import { BehaviorSubject, combineLatest, Observable, throwError } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 import { noProfanityValidator } from '../../../../common/validators/no-profanity.validator';
+import { GiphySettingsService } from '../../../../core/giphy-search/services/giphy-settings.service';
 import { ImageSearchService, ImageSearchServiceToken } from '../../../../core/image-search';
 import { ImageSearchResponse } from '../../../../core/image-search/image-search-response';
 
@@ -15,6 +16,7 @@ import { ImageSearchResponse } from '../../../../core/image-search/image-search-
 })
 export class SearchImageComponent implements OnInit {
   searchControl = new FormControl('', { validators: [Validators.required, noProfanityValidator] });
+  pageSize$!: Observable<number | undefined>;
   imageSearchResponse$!: Observable<ImageSearchResponse | undefined>;
   errorResponseMessage: string | undefined;
 
@@ -26,11 +28,16 @@ export class SearchImageComponent implements OnInit {
     return this.searchControl.hasError('profanity') ? 'Please keep it clean... No swear words or profanity allowed' : '';
   }
 
-  constructor(@Inject(ImageSearchServiceToken) private readonly imageSearchService: ImageSearchService) {}
+  constructor(
+    @Inject(ImageSearchServiceToken) private readonly imageSearchService: ImageSearchService,
+    private readonly imageSettingsService: GiphySettingsService
+  ) {}
 
   private readonly pageIndexSubject = new BehaviorSubject<number>(0);
 
   ngOnInit(): void {
+    this.pageSize$ = this.imageSettingsService.limit$;
+
     this.imageSearchResponse$ = combineLatest([
       this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500)),
       this.pageIndexSubject.pipe(distinctUntilChanged()),

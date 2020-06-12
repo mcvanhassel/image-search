@@ -7,7 +7,7 @@
   <mat-paginator
     [color]="'primary'"
     [length]="(imageSearchResponse$ | async)?.pagination?.total || 0"
-    [pageSize]="(imageSearchResponse$ | async)?.pagination?.count || 0"
+    [pageSize]="(pageSize$ | async) || 0"
     [hidePageSize]="true"
     (page)="onPageChanged($event)"
   ></mat-paginator>
