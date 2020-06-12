@@ -30,7 +30,5 @@
 </ng-template>
 
 <ng-template #error>
-  <app-hero-section title="Oops, something went wrong" [text]="'Please fix the following error'">
-    <code>{{ errorResponseMessage }}</code>
-  </app-hero-section>
+  <app-hero-section title="Oops, something went wrong" [text]="errorResponseMessage"></app-hero-section>
 </ng-template>
