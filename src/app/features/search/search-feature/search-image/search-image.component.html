@@ -1,0 +1,36 @@
+<header>
+  <mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Word or phrase" [formControl]="searchControl" />
+    <mat-error *ngIf="searchControl.errors">{{ errorMessage }}</mat-error>
+  </mat-form-field>
+  <mat-paginator
+    [color]="'primary'"
+    [length]="(imageSearchResponse$ | async)?.pagination?.total || 0"
+    [pageSize]="(imageSearchResponse$ | async)?.pagination?.count || 0"
+    [hidePageSize]="true"
+    (page)="onPageChanged($event)"
+  ></mat-paginator>
+</header>
+
+<ng-container *ngIf="!errorResponseMessage?.length; else error">
+  <ng-container *ngIf="imageSearchResponse$ | async as imageSearchResponse; else startSearch">
+    <ng-container *ngIf="imageSearchResponse.images.length; else emptyResult">
+      <app-image-grid [images]="(imageSearchResponse$ | async)?.images"></app-image-grid>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #emptyResult>
+  <app-hero-section [title]="'We failed'" [text]="'Nothing found for your search query :('"></app-hero-section>
+</ng-template>
+
+<ng-template #startSearch>
+  <app-hero-section title="Let's go!" [text]="'Start your search by typing a word or phrase above'"></app-hero-section>
+</ng-template>
+
+<ng-template #error>
+  <app-hero-section title="Oops, something went wrong" [text]="'Please fix the following error'">
+    <code>{{ errorResponseMessage }}</code>
+  </app-hero-section>
+</ng-template>

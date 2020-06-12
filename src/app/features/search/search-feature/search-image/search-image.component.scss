@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  .mat-form-field {
+    flex: 1;
+  }
+}
+
+app-image-grid {
+  margin: 1rem;
+  flex: 1;
+}
+
+app-hero-section {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
