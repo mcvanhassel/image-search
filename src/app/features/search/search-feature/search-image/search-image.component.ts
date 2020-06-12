@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, combineLatest, Observable, throwError } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { BehaviorSubject, combineLatest, Observable, Subscription, throwError } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 import { noProfanityValidator } from '../../../../common/validators/no-profanity.validator';
@@ -14,7 +14,9 @@ import { ImageSearchResponse } from '../../../../core/image-search/image-search-
   templateUrl: './search-image.component.html',
   styleUrls: ['./search-image.component.scss'],
 })
-export class SearchImageComponent implements OnInit {
+export class SearchImageComponent implements OnInit, OnDestroy {
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+
   searchControl = new FormControl('', { validators: [Validators.required, noProfanityValidator] });
   pageSize$!: Observable<number | undefined>;
   imageSearchResponse$!: Observable<ImageSearchResponse | undefined>;
@@ -33,15 +35,18 @@ export class SearchImageComponent implements OnInit {
     private readonly imageSettingsService: GiphySettingsService
   ) {}
 
+  private readonly subscriptions = new Subscription();
   private readonly pageIndexSubject = new BehaviorSubject<number>(0);
 
   ngOnInit(): void {
     this.pageSize$ = this.imageSettingsService.limit$;
 
-    this.imageSearchResponse$ = combineLatest([
-      this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500)),
-      this.pageIndexSubject.pipe(distinctUntilChanged()),
-    ]).pipe(
+    const pageIndexChanges$ = this.pageIndexSubject.pipe(distinctUntilChanged());
+    const searchQueryChanges$ = this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500));
+
+    this.subscriptions.add(searchQueryChanges$.subscribe(() => this.paginator?.firstPage()));
+
+    this.imageSearchResponse$ = combineLatest([searchQueryChanges$, pageIndexChanges$]).pipe(
       tap(() => (this.errorResponseMessage = '')),
       filter(() => this.searchControl.valid),
       switchMap(([query, pageIndex]) => this.imageSearchService.search(query, pageIndex)),
@@ -51,6 +56,10 @@ export class SearchImageComponent implements OnInit {
       }),
       shareReplay(1)
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   onPageChanged(event: PageEvent): void {
