@@ -2,8 +2,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 main {
-  flex: 1;
+  height: 100%;
 }
