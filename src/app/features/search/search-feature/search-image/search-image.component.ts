@@ -1,8 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, combineLatest, Observable, Subscription, throwError } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable, of, Subscription } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { noProfanityValidator } from '../../../../common/validators/no-profanity.validator';
 import { GiphySettingsService } from '../../../../core/giphy-search/services/giphy-settings.service';
@@ -20,7 +20,7 @@ export class SearchImageComponent implements OnInit, OnDestroy {
   searchControl = new FormControl('', { validators: [Validators.required, noProfanityValidator] });
   pageSize$!: Observable<number | undefined>;
   imageSearchResponse$!: Observable<ImageSearchResponse | undefined>;
-  errorResponseMessage: string | undefined;
+  errorMessage$!: Observable<string>;
 
   get errorMessage(): string {
     if (this.searchControl.hasError('required')) {
@@ -47,14 +47,14 @@ export class SearchImageComponent implements OnInit, OnDestroy {
     this.subscriptions.add(searchQueryChanges$.subscribe(() => this.paginator?.firstPage()));
 
     this.imageSearchResponse$ = combineLatest([searchQueryChanges$, pageIndexChanges$]).pipe(
-      tap(() => (this.errorResponseMessage = '')),
       filter(() => this.searchControl.valid),
       switchMap(([query, pageIndex]) => this.imageSearchService.search(query, pageIndex)),
-      catchError(err => {
-        this.errorResponseMessage = err.error.message;
-        return throwError(err);
-      }),
       shareReplay(1)
+    );
+
+    this.errorMessage$ = this.imageSearchResponse$.pipe(
+      catchError(err => of(err.error.message)),
+      filter((errorMessage: string) => errorMessage?.length > 0)
     );
   }
 

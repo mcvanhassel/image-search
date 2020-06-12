@@ -13,11 +13,14 @@
   ></mat-paginator>
 </header>
 
-<ng-container *ngIf="!errorResponseMessage?.length; else error">
+<app-hero-section *ngIf="errorMessage$ | async as errorMessage" title="Oops, something went wrong" [text]="errorMessage"></app-hero-section>
+
+<ng-container *ngIf="!(errorMessage$ | async)">
   <ng-container *ngIf="imageSearchResponse$ | async as imageSearchResponse; else startSearch">
-    <ng-container *ngIf="imageSearchResponse.images.length; else emptyResult">
-      <app-image-grid [images]="(imageSearchResponse$ | async)?.images"></app-image-grid>
-    </ng-container>
+    <app-image-grid
+      *ngIf="imageSearchResponse?.images.length > 0; else emptyResult"
+      [images]="imageSearchResponse?.images"
+    ></app-image-grid>
   </ng-container>
 </ng-container>
 
@@ -27,8 +30,4 @@
 
 <ng-template #startSearch>
   <app-hero-section title="Let's go!" [text]="'Start your search by typing a word or phrase above'"></app-hero-section>
-</ng-template>
-
-<ng-template #error>
-  <app-hero-section title="Oops, something went wrong" [text]="errorResponseMessage"></app-hero-section>
 </ng-template>
