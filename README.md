@@ -10,6 +10,7 @@ A working version of the application can be found via [Gif Me Inspiration](https
 - Implement End-to-end Tests
 - Use barrel files
 - Remove dependency on GiphySettingsService in SearchSettingsComponent
+- Add Image Details page
 - Refactor code and reorganize files
 
 ## Development server
