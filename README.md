@@ -11,6 +11,7 @@ A working version of the application can be found via [Gif Me Inspiration](https
 - Use barrel files
 - Remove dependency on GiphySettingsService in SearchSettingsComponent
 - Add Image Details page
+- Add Trending Images page
 - Refactor code and reorganize files
 
 ## Development server
