@@ -1,0 +1,32 @@
+<app-hero-section [title]="'Please enter Giphy API Key'">
+  <mat-card>
+    <form [formGroup]="formGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>API Key</mat-label>
+        <input matInput type="text" [formControl]="apiKeyControl" />
+        <mat-error *ngIf="apiKeyControl.invalid">API Key is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Rating</mat-label>
+        <mat-select [formControl]="ratingControl">
+          <mat-option *ngFor="let rating of ratings" [value]="rating">
+            {{ rating }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Image Count</mat-label>
+        <input matInput type="number" placeholder="Maximum number of images to display" [formControl]="limitControl" />
+        <mat-error *ngIf="limitControl.errors?.required">Image Count is required</mat-error>
+        <mat-error *ngIf="limitControl.errors?.min">Minimum image Count is 0</mat-error>
+        <mat-error *ngIf="limitControl.errors?.max">Maximum image Count is 25</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button [color]="'accent'" [disabled]="formGroup.invalid || formGroup.pristine" (click)="saveSettings()">
+        Save
+      </button>
+    </form>
+  </mat-card>
+</app-hero-section>
