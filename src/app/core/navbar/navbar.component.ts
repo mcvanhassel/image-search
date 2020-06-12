@@ -10,6 +10,7 @@ import { MenuItem } from './menu-item';
 export class NavbarComponent {
   readonly menuItems: MenuItem[] = [
     { title: 'Welcome', routerLink: '/welcome', icon: 'home' },
-    { title: 'Search', routerLink: '/search', icon: 'search' },
+    { title: 'Search', routerLink: '/search/query', icon: 'search' },
+    { title: 'Settings', routerLink: '/search/settings', icon: 'settings' },
   ];
 }
