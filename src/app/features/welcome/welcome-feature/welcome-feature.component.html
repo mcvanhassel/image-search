@@ -1,8 +1,6 @@
-<section>
-  <h2 class="mat-display-2">Welcome to <strong>Gif me Inspiration</strong></h2>
-  <p>
-    How's your mood today? Want to express yourself through pictures? Please allow us to inspire you! :) You'll only have to guide us by
-    typing in some nice words that pop in to your head. We'll do the rest. Promise.
-  </p>
-  <button mat-raised-button [color]="'accent'" [routerLink]="'/search'">Find Some Inspiration</button>
-</section>
+<app-hero-section [title]="heroTitle" [text]="heroText">
+  <div class="actions">
+    <button mat-raised-button [color]="'accent'" [routerLink]="'/search'">Find Some Inspiration</button>
+    <button mat-raised-button [color]="'primary'" [routerLink]="'/search/settings'">Enter API Key</button>
+  </div>
+</app-hero-section>
