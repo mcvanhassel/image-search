@@ -15,7 +15,7 @@
 
 <app-hero-section *ngIf="errorMessage$ | async as errorMessage" title="Oops, something went wrong" [text]="errorMessage"></app-hero-section>
 
-<ng-container *ngIf="!(errorMessage$ | async)">
+<ng-container *ngIf="(errorMessage$ | async) === null">
   <ng-container *ngIf="imageSearchResponse$ | async as imageSearchResponse; else startSearch">
     <app-image-grid *ngIf="imageSearchResponse?.images?.length; else emptyResult" [images]="imageSearchResponse?.images"></app-image-grid>
   </ng-container>
