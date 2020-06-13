@@ -16,14 +16,6 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Image Count</mat-label>
-        <input matInput type="number" placeholder="Maximum number of images to display" [formControl]="limitControl" />
-        <mat-error *ngIf="limitControl.errors?.required">Image Count is required</mat-error>
-        <mat-error *ngIf="limitControl.errors?.min">Minimum image Count is 0</mat-error>
-        <mat-error *ngIf="limitControl.errors?.max">Maximum image Count is 25</mat-error>
-      </mat-form-field>
-
       <button mat-raised-button [color]="'accent'" [disabled]="formGroup.invalid || formGroup.pristine" (click)="saveSettings()">
         Save
       </button>
