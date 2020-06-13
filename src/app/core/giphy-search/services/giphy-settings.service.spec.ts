@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GiphySettingsService } from './giphy-settings.service';
 
-describe('ApiKeyService', () => {
+describe('GiphySettingsService', () => {
   let service: GiphySettingsService;
 
   beforeEach(() => {

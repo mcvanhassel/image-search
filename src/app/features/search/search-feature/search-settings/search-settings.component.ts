@@ -12,9 +12,9 @@ import { GiphySettingsService } from '../../../../core/giphy-search/services/gip
 export class SearchSettingsComponent {
   ratings = Object.keys(Rating);
 
-  apiKeyControl = new FormControl(this.apiKeyService.apiKey, { validators: Validators.required });
-  ratingControl = new FormControl(this.apiKeyService.rating, { validators: Validators.required });
-  limitControl = new FormControl(this.apiKeyService.limit, { validators: [Validators.required, Validators.min(0), Validators.max(25)] });
+  apiKeyControl = new FormControl(this.settingsService.apiKey, { validators: Validators.required });
+  ratingControl = new FormControl(this.settingsService.rating, { validators: Validators.required });
+  limitControl = new FormControl(this.settingsService.limit, { validators: [Validators.required, Validators.min(0), Validators.max(25)] });
 
   formGroup = new FormGroup({
     apiKey: this.apiKeyControl,
@@ -22,12 +22,12 @@ export class SearchSettingsComponent {
     limit: this.limitControl,
   });
 
-  constructor(private readonly apiKeyService: GiphySettingsService) {}
+  constructor(private readonly settingsService: GiphySettingsService) {}
 
   saveSettings(): void {
-    this.apiKeyService.setApiKey(this.apiKeyControl.value);
-    this.apiKeyService.setLimit(this.limitControl.value);
-    this.apiKeyService.setRating(this.ratingControl.value);
+    this.settingsService.setApiKey(this.apiKeyControl.value);
+    this.settingsService.setLimit(this.limitControl.value);
+    this.settingsService.setRating(this.ratingControl.value);
     this.formGroup.markAsPristine();
   }
 }
