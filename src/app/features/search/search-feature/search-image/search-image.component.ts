@@ -5,7 +5,6 @@ import { BehaviorSubject, combineLatest, Observable, of, Subscription } from 'rx
 import { catchError, debounceTime, distinctUntilChanged, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { noProfanityValidator } from '../../../../common/validators/no-profanity.validator';
-import { GiphySettingsService } from '../../../../core/giphy-search/services/giphy-settings.service';
 import { ImageSearchService, ImageSearchServiceToken } from '../../../../core/image-search';
 import { ImageSearchResponse } from '../../../../core/image-search/image-search-response';
 
@@ -17,38 +16,27 @@ import { ImageSearchResponse } from '../../../../core/image-search/image-search-
 export class SearchImageComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
+  pageSize: number = 20;
   searchControl = new FormControl('', { validators: [Validators.required, noProfanityValidator] });
-  pageSize$!: Observable<number | undefined>;
   imageSearchResponse$!: Observable<ImageSearchResponse | undefined>;
   errorMessage$!: Observable<string>;
 
-  get errorMessage(): string {
-    if (this.searchControl.hasError('required')) {
-      return 'Please enter a search query so that we can get to work :)';
-    }
-
-    return this.searchControl.hasError('profanity') ? 'Please keep it clean... No swear words or profanity allowed' : '';
-  }
-
-  constructor(
-    @Inject(ImageSearchServiceToken) private readonly imageSearchService: ImageSearchService,
-    private readonly imageSettingsService: GiphySettingsService
-  ) {}
+  constructor(@Inject(ImageSearchServiceToken) private readonly imageSearchService: ImageSearchService) {}
 
   private readonly subscriptions = new Subscription();
   private readonly pageIndexSubject = new BehaviorSubject<number>(0);
+  private readonly pageSizeSubject = new BehaviorSubject<number>(this.pageSize);
 
   ngOnInit(): void {
-    this.pageSize$ = this.imageSettingsService.limit$;
-
     const pageIndexChanges$ = this.pageIndexSubject.pipe(distinctUntilChanged());
+    const pageSizeChanges$ = this.pageSizeSubject.pipe(distinctUntilChanged());
     const searchQueryChanges$ = this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500));
 
     this.subscriptions.add(searchQueryChanges$.subscribe(() => this.paginator?.firstPage()));
 
-    this.imageSearchResponse$ = combineLatest([searchQueryChanges$, pageIndexChanges$]).pipe(
+    this.imageSearchResponse$ = combineLatest([searchQueryChanges$, pageIndexChanges$, pageSizeChanges$]).pipe(
       filter(() => this.searchControl.valid),
-      switchMap(([query, pageIndex]) => this.imageSearchService.search(query, pageIndex)),
+      switchMap(([query, pageIndex, pageSize]) => this.imageSearchService.search(query, pageIndex, pageSize)),
       shareReplay(1)
     );
 
@@ -63,6 +51,7 @@ export class SearchImageComponent implements OnInit, OnDestroy {
   }
 
   onPageChanged(event: PageEvent): void {
+    this.pageSizeSubject.next(event.pageSize);
     this.pageIndexSubject.next(event.pageIndex);
   }
 }

@@ -2,13 +2,14 @@
   <mat-form-field appearance="fill">
     <mat-label>Search</mat-label>
     <input matInput placeholder="Word or phrase" [formControl]="searchControl" />
-    <mat-error *ngIf="searchControl.errors">{{ errorMessage }}</mat-error>
+    <mat-error *ngIf="searchControl.errors?.required">Please enter a search query so that we can get to work :)</mat-error>
+    <mat-error *ngIf="searchControl.errors?.profanity">Please keep it clean... No swear words or profanity allowed</mat-error>
   </mat-form-field>
   <mat-paginator
     [color]="'primary'"
     [length]="(imageSearchResponse$ | async)?.pagination?.total || 0"
-    [pageSize]="(pageSize$ | async) || 0"
-    [hidePageSize]="true"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15, 20, 25]"
     (page)="onPageChanged($event)"
   ></mat-paginator>
 </header>
