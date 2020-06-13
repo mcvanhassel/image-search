@@ -6,5 +6,5 @@ import { ImageSearchResponse } from './image-search-response';
 export const ImageSearchServiceToken = new InjectionToken<Provider>('ImageSearchServiceToken');
 
 export interface ImageSearchService {
-  search(query: string, pageIndex?: number): Observable<ImageSearchResponse>;
+  search(query: string, pageIndex?: number, pageSize?: number): Observable<ImageSearchResponse>;
 }

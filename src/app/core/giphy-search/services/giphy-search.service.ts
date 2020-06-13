@@ -21,15 +21,14 @@ export class GiphySearchService implements ImageSearchService {
     private readonly giphySettingsService: GiphySettingsService
   ) {}
 
-  search(query: string, pageIndex: number): Observable<ImageSearchResponse> {
-    const limit = this.giphySettingsService.limit || 25;
+  search(query: string, pageIndex: number, pageSize: number): Observable<ImageSearchResponse> {
     const params = new HttpParams()
       .set('api_key', this.giphySettingsService.apiKey || '')
-      .set('limit', `${limit}`)
+      .set('limit', `${pageSize}`)
       .set('rating', this.giphySettingsService.rating || Rating.G)
       .set('lang', this.config.language)
       .set('q', query)
-      .set('offset', `${pageIndex * limit}`);
+      .set('offset', `${pageIndex * pageSize}`);
 
     return this.http
       .get<GiphySearchResponse>(`${this.config.apiUrl}/gifs/search`, { params })
