@@ -4,9 +4,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, combineLatest, Observable, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { noProfanityValidator } from '../../../../common/validators/no-profanity.validator';
-import { ImageSearchService, ImageSearchServiceToken } from '../../../../core/image-search';
-import { ImageSearchResponse } from '../../../../core/image-search/image-search-response';
+import { CensoredWordsValidator } from '../../../../core/censored-words';
+import { ImageSearchResponse, ImageSearchService, ImageSearchServiceToken } from '../../../../core/image-search';
 
 @Component({
   selector: 'app-search-image',
@@ -17,11 +16,14 @@ export class SearchImageComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   pageSize: number = 20;
-  searchControl = new FormControl('', { validators: [Validators.required, noProfanityValidator] });
+  searchControl = new FormControl('', [Validators.required, this.censoredWordsValidator.validate()]);
   imageSearchResponse$!: Observable<ImageSearchResponse | undefined>;
   errorMessage$!: Observable<string>;
 
-  constructor(@Inject(ImageSearchServiceToken) private readonly imageSearchService: ImageSearchService) {}
+  constructor(
+    @Inject(ImageSearchServiceToken) private readonly imageSearchService: ImageSearchService,
+    private readonly censoredWordsValidator: CensoredWordsValidator
+  ) {}
 
   private readonly subscriptions = new Subscription();
   private readonly pageIndexSubject = new BehaviorSubject<number>(0);
