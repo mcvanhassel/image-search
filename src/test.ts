@@ -16,6 +16,8 @@ declare const require: {
   };
 };
 
+import './app/app.module';
+
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.
