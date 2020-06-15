@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { ImageSearchServiceToken } from '../image-search';
-import { GiphyConfiguration } from './models/giphy-configuration';
+import { GiphyConfiguration } from './models';
 import { GiphySearchService } from './services/giphy-search.service';
 
 @NgModule({

@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 
 import { HeroSectionModule } from '../../common/hero-section';
 import { ImageGridModule } from '../../common/image-grid';
-import { ApiKeyGuard } from '../../core/giphy-search/guards/api-key.guard';
+import { ApiKeyGuard } from '../../core/giphy-search';
 import { SearchFeatureComponent } from './search-feature/search-feature.component';
 import { SearchImageComponent } from './search-feature/search-image/search-image.component';
 import { SearchSettingsComponent } from './search-feature/search-settings/search-settings.component';

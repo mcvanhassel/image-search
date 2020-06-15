@@ -5,11 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Image, ImageSearchResponse, ImageSearchService, ImageSource } from '../../image-search';
-import { Giphy } from '../models/giphy';
-import { GiphyConfiguration } from '../models/giphy-configuration';
-import { GiphySearchResponse } from '../models/giphy-search-response';
-import { GiphySource } from '../models/giphy-source';
-import { Rating } from '../models/rating';
+import { Giphy, GiphyConfiguration, GiphySearchResponse, GiphySource, Rating } from '../models';
 import { GiphySettingsService } from './giphy-settings.service';
 
 @Injectable()
