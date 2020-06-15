@@ -3,9 +3,9 @@ import { TestBed } from '@angular/core/testing';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
 import { ImageSearchResponse } from '../../image-search';
-import { GiphySearchResponse } from '../models';
-import { GiphyConfiguration } from '../models/giphy-configuration';
+import { GiphyConfiguration, GiphySearchResponse, Rating } from '../models';
 import { GiphySearchService } from './giphy-search.service';
+import { GiphySettingsService } from './giphy-settings.service';
 
 describe('GiphySearchService', () => {
   const config: GiphyConfiguration = { apiUrl: 'test.api', language: 'en' };
@@ -13,32 +13,48 @@ describe('GiphySearchService', () => {
   let service: GiphySearchService;
   let httpTestingController: HttpTestingController;
   let domSanitizer: DomSanitizer;
+  let settingsService: GiphySettingsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BrowserModule, HttpClientTestingModule],
-      providers: [GiphySearchService, { provide: GiphyConfiguration, useValue: config }],
+      providers: [GiphySearchService, { provide: GiphyConfiguration, useValue: config }, GiphySettingsService],
     });
 
     service = TestBed.inject(GiphySearchService);
     httpTestingController = TestBed.inject(HttpTestingController);
     domSanitizer = TestBed.inject(DomSanitizer);
+    settingsService = TestBed.inject(GiphySettingsService);
   });
+
+  beforeEach(() => spyOn(domSanitizer, 'bypassSecurityTrustUrl').and.returnValue('sanitized'));
+
+  afterEach(() => httpTestingController.verify());
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('search should call api endpoint and convert giphy response to image response', () => {
-    spyOn(domSanitizer, 'bypassSecurityTrustUrl').and.returnValue('sanitized');
+    spyOnProperty(settingsService, 'apiKey').and.returnValue('123');
+    spyOnProperty(settingsService, 'rating').and.returnValue(Rating.PG);
+
+    service.search('test', 2, 25).subscribe(result => expect(result).toEqual(imageResponse));
+
+    const req = httpTestingController.expectOne('test.api/gifs/search?api_key=123&limit=25&rating=PG&lang=en&q=test&offset=50');
+    expect(req.request.method).toBe('GET');
+    req.flush(giphyResponse);
+  });
+
+  it('search should use defaults for api_key and rating in api endpoint', () => {
+    spyOnProperty(settingsService, 'apiKey').and.returnValue(undefined);
+    spyOnProperty(settingsService, 'rating').and.returnValue(undefined);
 
     service.search('test', 2, 25).subscribe(result => expect(result).toEqual(imageResponse));
 
     const req = httpTestingController.expectOne('test.api/gifs/search?api_key=&limit=25&rating=G&lang=en&q=test&offset=50');
     expect(req.request.method).toBe('GET');
     req.flush(giphyResponse);
-
-    httpTestingController.verify();
   });
 });
 
