@@ -1,4 +1,5 @@
 export { GiphySearchService } from './services/giphy-search.service';
+export { GiphySettingsService } from './services/giphy-settings.service';
 export { GiphyConfiguration } from './models/giphy-configuration';
 export { GiphySearchModule } from './giphy-search.module';
 export { Giphy } from './models/giphy';

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Rating } from '../../../../core/giphy-search';
-import { GiphySettingsService } from '../../../../core/giphy-search/services/giphy-settings.service';
+import { GiphySettingsService, Rating } from '../../../../core/giphy-search';
 
 @Component({
   selector: 'app-search-settings',
