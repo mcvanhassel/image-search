@@ -59,6 +59,6 @@ export class GiphySearchService implements ImageSearchService {
   });
 
   private sanitizeUrl(url: string | undefined): SafeUrl | undefined {
-    return !!url && this.sanitizer.bypassSecurityTrustUrl(url);
+    return !!url ? this.sanitizer.bypassSecurityTrustUrl(url) : undefined;
   }
 }
