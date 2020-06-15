@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import * as badWords from 'badwords/array';
+import * as badwords from 'badwords/array';
 
 import { CensoredWordsToken } from '../censored-words';
 
 @NgModule({
-  providers: [{ provide: CensoredWordsToken, useValue: badWords }],
+  providers: [{ provide: CensoredWordsToken, useValue: badwords }],
 })
 export class BadWordsModule {}
