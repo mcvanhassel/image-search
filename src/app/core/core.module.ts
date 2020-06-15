@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { BadWordsModule } from './bad-words';
 import { GiphySearchModule } from './giphy-search';
 import { NavbarModule } from './navbar';
 
@@ -8,6 +9,7 @@ import { NavbarModule } from './navbar';
   imports: [
     CommonModule,
     NavbarModule,
+    BadWordsModule,
     GiphySearchModule.forRoot({
       apiUrl: 'https://api.giphy.com/v1',
       language: 'en',
