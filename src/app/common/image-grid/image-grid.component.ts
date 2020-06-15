@@ -8,5 +8,5 @@ import { Image } from '../../core/image-search';
   styleUrls: ['./image-grid.component.scss'],
 })
 export class ImageGridComponent {
-  @Input() images: Image[] = [];
+  @Input() images: Image[] | undefined = [];
 }
