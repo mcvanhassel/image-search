@@ -15,11 +15,12 @@ before_script:
 
 script:
   - ng lint
-  - ng test --watch=false --browsers ChromeHeadless
+  - ng test --watch=false --code-coverage --browsers ChromeHeadless
   - ng build --prod
 
 after_success:
   - firebase deploy --token=${FIREBASE_TOKEN}
+  - bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
 
 notifications:
   email:
