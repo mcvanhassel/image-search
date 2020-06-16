@@ -1,6 +1,7 @@
 # ImageSearch
 
 ![Travis (.org)](https://img.shields.io/travis/mcvanhassel/image-search)
+[![Known Vulnerabilities](https://snyk.io/test/github/mcvanhassel/image-search/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mcvanhassel/image-search?targetFile=package.json)
 [![HitCount](http://hits.dwyl.com/mcvanhassel/image-search/image-search.svg)](http://hits.dwyl.com/mcvanhassel/image-search/image-search)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
