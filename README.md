@@ -3,6 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/mcvanhassel/image-search)
 ![Travis (.org)](https://img.shields.io/travis/mcvanhassel/image-search)
 ![Codecov](https://img.shields.io/codecov/c/github/mcvanhassel/image-search)
+![Depfu](https://img.shields.io/depfu/mcvanhassel/image-search)
 [![Known Vulnerabilities](https://snyk.io/test/github/mcvanhassel/image-search/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mcvanhassel/image-search?targetFile=package.json)
 [![HitCount](http://hits.dwyl.com/mcvanhassel/image-search/image-search.svg)](http://hits.dwyl.com/mcvanhassel/image-search/image-search)
 
