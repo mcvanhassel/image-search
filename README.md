@@ -1,5 +1,7 @@
 # ImageSearch
 
+![Travis (.org)](https://img.shields.io/travis/mcvanhassel/image-search)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
 A working version of the application can be found via [Gif Me Inspiration](https://gif-me-inspiration.web.app/)
