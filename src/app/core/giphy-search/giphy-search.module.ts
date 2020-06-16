@@ -10,16 +10,10 @@ import { GiphySearchService } from './services/giphy-search.service';
   providers: [{ provide: ImageSearchServiceToken, useClass: GiphySearchService }],
 })
 export class GiphySearchModule {
-  static forRoot(config: GiphyConfiguration): ModuleWithProviders<GiphySearchModule> {
+  static withConfiguration(config: GiphyConfiguration): ModuleWithProviders<GiphySearchModule> {
     return {
       ngModule: GiphySearchModule,
       providers: [{ provide: GiphyConfiguration, useValue: config }],
-    };
-  }
-
-  static forChild(): ModuleWithProviders {
-    return {
-      ngModule: GiphySearchModule,
     };
   }
 }

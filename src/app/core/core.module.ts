@@ -10,7 +10,7 @@ import { NavbarModule } from './navbar';
     CommonModule,
     NavbarModule,
     BadWordsModule,
-    GiphySearchModule.forRoot({
+    GiphySearchModule.withConfiguration({
       apiUrl: 'https://api.giphy.com/v1',
       language: 'en',
     }),
