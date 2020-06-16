@@ -9,7 +9,7 @@ import { GiphySettingsService, Rating } from '../../../../core/giphy-search';
   styleUrls: ['./search-settings.component.scss'],
 })
 export class SearchSettingsComponent {
-  ratings = Object.keys(Rating);
+  ratings = Object.values(Rating);
 
   apiKeyControl = new FormControl(this.settingsService.apiKey, { validators: Validators.required });
   ratingControl = new FormControl(this.settingsService.rating, { validators: Validators.required });
