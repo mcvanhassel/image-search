@@ -5,7 +5,18 @@
 ![Codecov](https://img.shields.io/codecov/c/github/mcvanhassel/image-search)
 ![Depfu](https://img.shields.io/depfu/mcvanhassel/image-search)
 [![Known Vulnerabilities](https://snyk.io/test/github/mcvanhassel/image-search/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mcvanhassel/image-search?targetFile=package.json)
-[![HitCount](http://hits.dwyl.com/mcvanhassel/image-search/image-search.svg)](http://hits.dwyl.com/mcvanhassel/image-search/image-search)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=alert_status)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=security_rating)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=ncloc)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=bugs)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=code_smells)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
