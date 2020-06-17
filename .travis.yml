@@ -11,17 +11,17 @@ addons:
   sonarcloud:
     organization: '${SONARCLOUD_ORGANIZATION}'
     token:
-      secure: '${SONARCLOUD_TOKEN}'
+      secure: NOzXEr4Ud0ld6Vkzs5BUxy4XbNTP8Feb0yW88G/MYFseSjqqXKqY/lJBX/dX3Ua4PYtIsLdFoP7+xLvJ2cPbG5D1Ku6UexEo+5Ky8E2Y9xOxW9P2e25csURFhCjP3d7+Yqx0RDw6pW0pVqkaFSFPnp6LPOPBg7qUX3Ofv0CgAjnM1sB5KRYMHHTt8DioFFhUEN8v/wWUfBUSGokD2vnAb7iv67rMf+qM51qvpDV/fj4gg56f7Fq47XBzcHed7syfWdZDqNB2a/Kdc0x134ebrBi/y9b8VQNO7ea8f/rsVN4BHyeOlnZaT2fCUp1WPvKje7Ku4KWydJaq6WxodtnYM0kmMe3iun6wCokLQZIb+ZCHD5bAj70Pl4I9SffwLfGNEYv4XyJx/E7uQtXI40o8VJD88YmARKHBv/pVVMzM+BxOvVKwQIStntmBURp/1V5SDaljYVQoFg+fKnhQ0GhgEGD3z7Z4KdkAhbT+shZEuzYbwf6VqdjGdYR6vROZ//OgaySILUrIYohslmUR19J2aqZH9xipyohjF5VF9hnE+sCejlNU2wIoiR/yHo/LepTOvXGSLWpXPuRXmYfshYTXAOVaaquFROkAguwnmv3nVhiLKEuNmUyfmOzQSqpqPn41MvA90cmeKCZv7Y5ajINl7Og10ZtJ7S7jdZzQ+3FJkO8=
 
 before_script:
   - npm install -g firebase-tools
   - npm install -g @angular/cli
 
 script:
-  - ng lint
-  - ng test --watch=false --code-coverage --browsers ChromeHeadless
+  #- ng lint
+  #- ng test --watch=false --code-coverage --browsers ChromeHeadless
   - sonar-scanner -Dsonar.projectKey=${SONARCLOUD_PROJECT_KEY} -Dsonar.projectVersion=1.0.0
-  - ng build --prod
+  #- ng build --prod
 
 after_success:
   - firebase deploy --token=${FIREBASE_TOKEN}
