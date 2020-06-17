@@ -20,7 +20,7 @@ before_script:
 script:
   - ng lint
   - ng test --watch=false --code-coverage --browsers ChromeHeadless
-  - sonar-scanner -Dsonar.projectKey=${SONARCLOUD_PROJECT_KEY}
+  #- sonar-scanner -Dsonar.projectKey=${SONARCLOUD_PROJECT_KEY}
   - ng build --prod
 
 after_success:
