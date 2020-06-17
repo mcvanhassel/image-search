@@ -24,6 +24,12 @@ describe('AppRoutingModule', () => {
   let router: Router;
   let zone: NgZone;
 
+  const PATH_WELCOME = '/welcome';
+  const PATH_NOTFOUND = '/not-found';
+  const PATH_SEARCH = '/search';
+  const PATH_SEARCH_SETTINGS = '/search/settings';
+  const PATH_SEARCH_QUERY = '/search/query';
+
   async function navigate(commands: string[]): Promise<void> {
     await zone.run(() => router.navigate(commands));
   }
@@ -52,39 +58,39 @@ describe('AppRoutingModule', () => {
 
   it('should redirect to "welcome" when navigating to ""', async () => {
     await navigate(['']);
-    expectLocationPathToBe('/welcome');
+    expectLocationPathToBe(PATH_WELCOME);
   });
 
   it('should navigate to "welcome"', async () => {
-    await navigate(['/welcome']);
-    expectLocationPathToBe('/welcome');
+    await navigate([PATH_WELCOME]);
+    expectLocationPathToBe(PATH_WELCOME);
   });
 
   it('should redirect to "search/settings" when navigating to "search"', async () => {
-    await navigate(['/search']);
-    expectLocationPathToBe('/search/settings');
+    await navigate([PATH_SEARCH]);
+    expectLocationPathToBe(PATH_SEARCH_SETTINGS);
   });
 
   it('should redirect to "search/settings" when navigating to "search/query"', async () => {
-    await navigate(['/search/query']);
-    expectLocationPathToBe('/search/settings');
+    await navigate([PATH_SEARCH_QUERY]);
+    expectLocationPathToBe(PATH_SEARCH_SETTINGS);
   });
 
   it('should navigate to "search/query"', async () => {
     const settingsService = TestBed.inject(GiphySettingsService);
     spyOnProperty(settingsService, 'apiKey$').and.returnValue(of('123'));
 
-    await navigate(['/search/query']);
-    expectLocationPathToBe('/search/query');
+    await navigate([PATH_SEARCH_QUERY]);
+    expectLocationPathToBe(PATH_SEARCH_QUERY);
   });
 
   it('should navigate to "not-found"', async () => {
-    await navigate(['/not-found']);
-    expectLocationPathToBe('/not-found');
+    await navigate([PATH_NOTFOUND]);
+    expectLocationPathToBe(PATH_NOTFOUND);
   });
 
   it('should redirect to "not-found" when navigating to non-existing route', async () => {
     await navigate(['/test']);
-    expectLocationPathToBe('/not-found');
+    expectLocationPathToBe(PATH_NOTFOUND);
   });
 });
