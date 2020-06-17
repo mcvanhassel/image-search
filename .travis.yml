@@ -9,9 +9,9 @@ branches:
 addons:
   chrome: stable
   sonarcloud:
-    organization: ${SONARCLOUD_ORGANIZATION}
+    organization: '${SONARCLOUD_ORGANIZATION}'
     token:
-      secure: ${SONARCLOUD_TOKEN}
+      secure: '${SONARCLOUD_TOKEN}'
 
 before_script:
   - npm install -g firebase-tools
