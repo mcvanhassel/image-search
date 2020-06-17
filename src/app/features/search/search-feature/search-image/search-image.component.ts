@@ -13,7 +13,7 @@ import { ImageSearchResponse, ImageSearchService, ImageSearchServiceToken } from
   styleUrls: ['./search-image.component.scss'],
 })
 export class SearchImageComponent implements OnInit, OnDestroy {
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   pageSize: number = 20;
   searchControl = new FormControl('', [Validators.required, this.censoredWordsValidator.validate()]);
@@ -34,12 +34,12 @@ export class SearchImageComponent implements OnInit, OnDestroy {
     const pageSizeChanges$ = this.pageSizeSubject.pipe(distinctUntilChanged());
     const searchQueryChanges$ = this.searchControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500));
 
-    this.subscriptions.add(searchQueryChanges$.subscribe(() => this.paginator?.firstPage()));
+    this.subscriptions.add(searchQueryChanges$.subscribe(() => this.paginator.firstPage()));
 
     this.imageSearchResponse$ = combineLatest([searchQueryChanges$, pageIndexChanges$, pageSizeChanges$]).pipe(
       filter(() => this.searchControl.valid),
       switchMap(([query, pageIndex, pageSize]) => this.imageSearchService.search(query, pageIndex, pageSize)),
-      shareReplay(1)
+      shareReplay({ refCount: true })
     );
 
     this.errorMessage$ = this.imageSearchResponse$.pipe(
