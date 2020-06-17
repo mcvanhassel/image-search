@@ -3,7 +3,7 @@
 html,
 body {
   height: 100%;
-  background: -webkit-linear-gradient(to right, $accent, $primary);
+  background: -webkit-linear-gradient(right, $accent, $primary);
   background: linear-gradient(to right, $accent, $primary);
 }
 body {
