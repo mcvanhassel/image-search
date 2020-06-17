@@ -21,14 +21,14 @@ const imageSearchResponse = { images: [], pagination: { count: 20, offset: 0, to
 
 const images = [
   {
-    id: 'a',
-    title: 'A',
-    created: new Date('2020-06-15'),
-    source: 'a',
+    id: 'test',
+    title: 'Test',
+    created: new Date('2020-06-17'),
+    source: 'test',
     images: {
-      original: { url: 'sanitized', mp4: 'sanitized', webp: 'sanitized', width: 400, height: 400 },
-      medium: { url: undefined, mp4: undefined, webp: undefined, width: 200, height: 200 },
-      small: { url: undefined, mp4: undefined, webp: undefined, width: 100, height: 100 },
+      original: { url: 'sanitized', mp4: 'sanitized', webp: 'sanitized', width: 350, height: 350 },
+      medium: { url: undefined, mp4: undefined, webp: undefined, width: 250, height: 250 },
+      small: { url: undefined, mp4: undefined, webp: undefined, width: 120, height: 120 },
     },
   },
 ];
