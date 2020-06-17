@@ -24,6 +24,14 @@ describe('AppRoutingModule', () => {
   let router: Router;
   let zone: NgZone;
 
+  async function navigate(commands: string[]): Promise<void> {
+    await zone.run(() => router.navigate(commands));
+  }
+
+  function expectLocationPathToBe(path: string): void {
+    expect(location.path()).toBe(path);
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes), MatCardModule, HeroSectionModule],
@@ -43,40 +51,40 @@ describe('AppRoutingModule', () => {
   beforeEach(() => (zone = new NgZone({})));
 
   it('should redirect to "welcome" when navigating to ""', async () => {
-    await zone.run(() => router.navigate(['']));
-    expect(location.path()).toBe('/welcome');
+    await navigate(['']);
+    expectLocationPathToBe('/welcome');
   });
 
   it('should navigate to "welcome"', async () => {
-    await zone.run(() => router.navigate(['/welcome']));
-    expect(location.path()).toBe('/welcome');
+    await navigate(['/welcome']);
+    expectLocationPathToBe('/welcome');
   });
 
   it('should redirect to "search/settings" when navigating to "search"', async () => {
-    await zone.run(() => router.navigate(['/search']));
-    expect(location.path()).toBe('/search/settings');
+    await navigate(['/search']);
+    expectLocationPathToBe('/search/settings');
   });
 
   it('should redirect to "search/settings" when navigating to "search/query"', async () => {
-    await zone.run(() => router.navigate(['/search/query']));
-    expect(location.path()).toBe('/search/settings');
+    await navigate(['/search/query']);
+    expectLocationPathToBe('/search/settings');
   });
 
   it('should navigate to "search/query"', async () => {
     const settingsService = TestBed.inject(GiphySettingsService);
     spyOnProperty(settingsService, 'apiKey$').and.returnValue(of('123'));
 
-    await zone.run(() => router.navigate(['/search/query']));
-    expect(location.path()).toBe('/search/query');
+    await navigate(['/search/query']);
+    expectLocationPathToBe('/search/query');
   });
 
   it('should navigate to "not-found"', async () => {
-    await zone.run(() => router.navigate(['/not-found']));
-    expect(location.path()).toBe('/not-found');
+    await navigate(['/not-found']);
+    expectLocationPathToBe('/not-found');
   });
 
   it('should redirect to "not-found" when navigating to non-existing route', async () => {
-    await zone.run(() => router.navigate(['/test']));
-    expect(location.path()).toBe('/not-found');
+    await navigate(['/test']);
+    expectLocationPathToBe('/not-found');
   });
 });
