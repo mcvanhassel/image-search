@@ -14,8 +14,6 @@ A working version of the application can be found via [Gif Me Inspiration](https
 ## Todo
 
 - Analyze code (complexity) with SonarQube
-- Implement Unit Tests
-- Implement End-to-end Tests
 - Add Image Details page
 - Add Trending Images page
 
