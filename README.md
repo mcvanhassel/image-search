@@ -1,9 +1,9 @@
 # ImageSearch
 
-![GitHub](https://img.shields.io/github/license/mcvanhassel/image-search)
-![Travis (.org)](https://img.shields.io/travis/mcvanhassel/image-search)
-![Codecov](https://img.shields.io/codecov/c/github/mcvanhassel/image-search)
-![Depfu](https://img.shields.io/depfu/mcvanhassel/image-search)
+[![GitHub](https://img.shields.io/github/license/mcvanhassel/image-search)](LICENSE)
+[![Travis (.org)](https://img.shields.io/travis/mcvanhassel/image-search)](https://travis-ci.org/github/mcvanhassel/image-search)
+[![Codecov](https://img.shields.io/codecov/c/github/mcvanhassel/image-search)](https://codecov.io/gh/mcvanhassel/image-search)
+[![Depfu](https://img.shields.io/depfu/mcvanhassel/image-search)](https://depfu.com/repos/github/mcvanhassel/image-search)
 [![Known Vulnerabilities](https://snyk.io/test/github/mcvanhassel/image-search/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mcvanhassel/image-search?targetFile=package.json)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_image-search&metric=alert_status)](https://sonarcloud.io/dashboard?id=mcvanhassel_image-search)
