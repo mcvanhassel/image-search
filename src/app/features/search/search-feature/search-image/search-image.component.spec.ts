@@ -45,6 +45,7 @@ describe('SearchImageComponent', () => {
   let loader: HarnessLoader;
   let input: MatInputHarness;
   let paginator: MatPaginatorHarness;
+  const matErrorClass = '.mat-error';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -96,7 +97,7 @@ describe('SearchImageComponent', () => {
       await input.blur();
 
       expect(component.searchControl.invalid).toBeTrue();
-      const errorElement = fixture.debugElement.query(By.css('.mat-error'));
+      const errorElement = fixture.debugElement.query(By.css(matErrorClass));
       expect(errorElement.nativeElement.textContent).toBe('Please enter a search query so that we can get to work :)');
     });
 
@@ -106,7 +107,7 @@ describe('SearchImageComponent', () => {
       await input.blur();
 
       expect(component.searchControl.invalid).toBeTrue();
-      const errorElement = fixture.debugElement.query(By.css('.mat-error'));
+      const errorElement = fixture.debugElement.query(By.css(matErrorClass));
       expect(errorElement.nativeElement.textContent).toBe('Please keep it clean... No swear words or profanity allowed');
     });
 
@@ -117,7 +118,7 @@ describe('SearchImageComponent', () => {
 
       expect(component.searchControl.valid).toBeTrue();
       expect(component.searchControl.value).toBe('puppies');
-      const errorElement = fixture.debugElement.query(By.css('.mat-error'));
+      const errorElement = fixture.debugElement.query(By.css(matErrorClass));
       expect(errorElement).toBeNull();
     });
   });

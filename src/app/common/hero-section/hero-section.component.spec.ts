@@ -7,6 +7,9 @@ describe('HeroSectionComponent', () => {
   let component: HeroSectionComponent;
   let fixture: ComponentFixture<HeroSectionComponent>;
 
+  const heroTitle = 'Hero Title';
+  const heroText = 'Hero text.';
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HeroSectionComponent],
@@ -24,12 +27,12 @@ describe('HeroSectionComponent', () => {
   });
 
   it('Should display title', () => {
-    component.title = 'Hero Title';
+    component.title = heroTitle;
     fixture.detectChanges();
 
     const titleElement = fixture.debugElement.query(By.css('h2'));
-    expect(titleElement.nativeElement.textContent).toBe('Hero Title');
-    expect(titleElement.nativeElement.innerHTML).toBe('Hero Title');
+    expect(titleElement.nativeElement.textContent).toBe(heroTitle);
+    expect(titleElement.nativeElement.innerHTML).toBe(heroTitle);
   });
 
   it('Should display title as html', () => {
@@ -37,7 +40,7 @@ describe('HeroSectionComponent', () => {
     fixture.detectChanges();
 
     const titleElement = fixture.debugElement.query(By.css('h2'));
-    expect(titleElement.nativeElement.textContent).toBe('Hero Title');
+    expect(titleElement.nativeElement.textContent).toBe(heroTitle);
     expect(titleElement.nativeElement.innerHTML).toBe('<span>Hero Title</span>');
   });
 
@@ -49,12 +52,12 @@ describe('HeroSectionComponent', () => {
   });
 
   it('Should display text', () => {
-    component.text = 'Hero text.';
+    component.text = heroText;
     fixture.detectChanges();
 
     const textElement = fixture.debugElement.query(By.css('p'));
-    expect(textElement.nativeElement.textContent).toBe('Hero text.');
-    expect(textElement.nativeElement.innerHTML).toBe('Hero text.');
+    expect(textElement.nativeElement.textContent).toBe(heroText);
+    expect(textElement.nativeElement.innerHTML).toBe(heroText);
   });
 
   it('Should display text as html', () => {
@@ -62,7 +65,7 @@ describe('HeroSectionComponent', () => {
     fixture.detectChanges();
 
     const textElement = fixture.debugElement.query(By.css('p'));
-    expect(textElement.nativeElement.textContent).toBe('Hero text.');
+    expect(textElement.nativeElement.textContent).toBe(heroText);
     expect(textElement.nativeElement.innerHTML).toBe('Hero <strong>text</strong>.');
   });
 });

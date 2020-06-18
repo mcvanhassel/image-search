@@ -37,23 +37,24 @@ describe('ImageGridComponent', () => {
   });
 });
 
+const url = 'favicon.ico';
 const images = [
   {
     id: 'a',
     title: 'A',
     images: {
-      original: { url: 'favicon.ico', height: 400, width: 400 },
-      small: { url: 'favicon.ico', height: 100, width: 100 },
-      medium: { url: 'favicon.ico', height: 200, width: 200 },
+      original: { url, height: 400, width: 400 },
+      small: { url, height: 100, width: 100 },
+      medium: { url, height: 200, width: 200 },
     },
   },
   {
     id: 'b',
     title: 'B',
     images: {
-      original: { url: 'favicon.ico', height: 400, width: 400 },
-      small: { url: 'favicon.ico', height: 100, width: 100 },
-      medium: { url: 'favicon.ico', height: 200, width: 200 },
+      original: { url, height: 400, width: 400 },
+      small: { url, height: 100, width: 100 },
+      medium: { url, height: 200, width: 200 },
     },
   },
 ];
