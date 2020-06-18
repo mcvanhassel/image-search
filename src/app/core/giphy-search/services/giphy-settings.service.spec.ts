@@ -23,7 +23,7 @@ describe('GiphySettingsService', () => {
     it('should be assigned and emitted', () => {
       service.setApiKey('123');
 
-      const expected: string = '123';
+      const expected = '123';
       expect(service.apiKey).toBe(expected);
       service.apiKey$.subscribe(apiKey => expect(apiKey).toBe(expected));
     });

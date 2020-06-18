@@ -38,7 +38,7 @@
     "no-console": ["debug", "info", "time", "timeEnd", "trace", true],
     "no-empty": false,
     "no-host-metadata-property": true,
-    "no-inferrable-types": ["ignore-params", true],
+    "no-inferrable-types": [true],
     "no-input-rename": true,
     "no-inputs-metadata-property": true,
     "no-non-null-assertion": true,

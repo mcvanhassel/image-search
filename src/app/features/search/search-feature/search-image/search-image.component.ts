@@ -15,7 +15,7 @@ import { ImageSearchResponse, ImageSearchService, ImageSearchServiceToken } from
 export class SearchImageComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  pageSize: number = 20;
+  pageSize = 20;
   searchControl = new FormControl('', [Validators.required, this.censoredWordsValidator.validate()]);
   imageSearchResponse$!: Observable<ImageSearchResponse | undefined>;
   errorMessage$!: Observable<string>;
