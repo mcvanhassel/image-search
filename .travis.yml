@@ -18,7 +18,7 @@ before_script:
 script:
   - ng lint
   - ng test --watch=false --code-coverage --browsers ChromeHeadless
-  - sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT} -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}
+  - sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT} -Dsonar.login=${SONAR_TOKEN}
   - ng build --prod
 
 after_success:
