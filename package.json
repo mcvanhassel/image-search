@@ -23,7 +23,7 @@
     "@angular/router": "~9.1.12",
     "badwords": "^1.0.0",
     "rxjs": "~6.6.2",
-    "tslib": "^1.10.0",
+    "tslib": "^1.14.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
