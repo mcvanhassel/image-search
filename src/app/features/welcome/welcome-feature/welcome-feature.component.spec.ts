@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -9,7 +9,7 @@ describe('WelcomeFeatureComponent', () => {
   let component: WelcomeFeatureComponent;
   let fixture: ComponentFixture<WelcomeFeatureComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), MatButtonModule, HeroSectionModule],
       declarations: [WelcomeFeatureComponent],
