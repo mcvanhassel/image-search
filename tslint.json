@@ -1,17 +1,40 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "align": {
+      "options": [
+        "parameters",
+        "statements"
+      ]
+    },
     "array-type": false,
     "arrow-parens": false,
+    "arrow-return-shorthand": true,
     "component-class-suffix": true,
     "component-selector": ["app", "element", "kebab-case", true],
     "contextual-lifecycle": true,
+    "curly": true,
     "deprecation": {
       "severity": "warning"
     },
     "directive-class-suffix": true,
-    "directive-selector": ["app", "attribute", "camelCase", true],
-    "import-blacklist": ["rxjs/Rx", true],
+    "directive-selector": [
+      "app",
+      "attribute",
+      "camelCase",
+      true
+    ],
+    "eofline": true,
+    "import-blacklist": [
+      "rxjs/Rx",
+      true
+    ],
+    "import-spacing": true,
+    "indent": {
+      "options": [
+        "spaces"
+      ]
+    },
     "interface-name": false,
     "max-classes-per-file": false,
     "max-line-length": [140, true],
@@ -65,13 +88,60 @@
     "prefer-for-of": true,
     "prefer-readonly": true,
     "quotemark": ["single", true],
-    "semicolon": ["always", "ignore-bound-class-methods", true],
+    "semicolon": [
+      "always",
+      "ignore-bound-class-methods",
+      true
+    ],
+    "space-before-function-paren": {
+      "options": {
+        "anonymous": "never",
+        "asyncArrow": "always",
+        "constructor": "never",
+        "method": "never",
+        "named": "never"
+      }
+    },
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "trailing-comma": false,
+    "typedef-whitespace": {
+      "options": [
+        {
+          "call-signature": "nospace",
+          "index-signature": "nospace",
+          "parameter": "nospace",
+          "property-declaration": "nospace",
+          "variable-declaration": "nospace"
+        },
+        {
+          "call-signature": "onespace",
+          "index-signature": "onespace",
+          "parameter": "onespace",
+          "property-declaration": "onespace",
+          "variable-declaration": "onespace"
+        }
+      ]
+    },
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
-    "variable-name": ["allow-leading-underscore", "allow-pascal-case", "ban-keywords", "check-format", true]
+    "variable-name": [
+      "allow-leading-underscore",
+      "allow-pascal-case",
+      "ban-keywords",
+      "check-format",
+      true
+    ],
+    "whitespace": {
+      "options": [
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-typecast"
+      ]
+    }
   },
   "rulesDirectory": ["codelyzer"]
 }
